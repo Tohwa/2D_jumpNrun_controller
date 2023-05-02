@@ -1,31 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float speed;
-
+    [SerializeField] private float speed = 0f;
+    
+    public bool moveVertical = true;
     private Vector2 _moveValue;
+
+    public Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+
+    }    
 
     // Update is called once per frame
-    void Update()
-    {
-        rb.velocity = new Vector2(
-            _moveValue.x * speed * Time.deltaTime,
-            rb.velocity.y);      
+    private void FixedUpdate()
+    {        
+
+        if(moveVertical)
+        {
+            rb.velocity = new Vector2(_moveValue.x * speed * Time.deltaTime, _moveValue.y * speed * Time.deltaTime);        // rb.velocity.y
+        }
+        else
+            rb.velocity = new Vector2(_moveValue.x * speed * Time.deltaTime, rb.velocity.y);        
+
+        // Debug.Log(rb.velocity);
     }
 
-    public void UpdateDirections(InputAction.CallbackContext context)
+    public void UpdateDirection(InputAction.CallbackContext context)
     {
         _moveValue = context.ReadValue<Vector2>();
-    }
+        // Debug.Log(_moveValue);
+    }    
 }
