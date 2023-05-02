@@ -2583,13 +2583,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1323908013}
-  jumpForce: 3
+  jumpForce: 5
   rayLength: 0.6
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
   grounded: 0
-  jumpCounter: 2
 --- !u!1 &1328767785
 GameObject:
   m_ObjectHideFlags: 0
